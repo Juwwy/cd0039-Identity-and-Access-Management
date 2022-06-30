@@ -92,13 +92,13 @@ export class DrinksService {
 
   getDrinks() {
     if (this.auth.can('get:drinks-detail')) {
-      this.http.get(this.url + '/drinks-detail', this.getHeaders())
+      this.http.get(this.url + '/api/v1/drinks-detail', this.getHeaders())
       .subscribe((res: any) => {
         this.drinksToItems(res.drinks);
         console.log(res);
       });
     } else {
-      this.http.get(this.url + '/drinks', this.getHeaders())
+      this.http.get(this.url + '/api/v1/drinks', this.getHeaders())
       .subscribe((res: any) => {
         this.drinksToItems(res.drinks);
         console.log(res);
@@ -109,14 +109,14 @@ export class DrinksService {
 
   saveDrink(drink: Drink) {
     if (drink.id >= 0) { // patch
-      this.http.patch(this.url + '/drinks/' + drink.id, drink, this.getHeaders())
+      this.http.patch(this.url + '/api/v1/drinks/' + drink.id, drink, this.getHeaders())
       .subscribe( (res: any) => {
         if (res.success) {
           this.drinksToItems(res.drinks);
         }
       });
     } else { // insert
-      this.http.post(this.url + '/drinks', drink, this.getHeaders())
+      this.http.post(this.url + '/api/v1/drinks', drink, this.getHeaders())
       .subscribe( (res: any) => {
         if (res.success) {
           this.drinksToItems(res.drinks);
@@ -128,7 +128,7 @@ export class DrinksService {
 
   deleteDrink(drink: Drink) {
     delete this.items[drink.id];
-    this.http.delete(this.url + '/drinks/' + drink.id, this.getHeaders())
+    this.http.delete(this.url + '/api/v1/drinks/' + drink.id, this.getHeaders())
     .subscribe( (res: any) => {
 
     });

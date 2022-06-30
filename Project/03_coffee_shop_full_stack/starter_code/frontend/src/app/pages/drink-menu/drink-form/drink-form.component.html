@@ -16,7 +16,7 @@
 
       <ion-item *ngFor="let ingredient of drink.recipe; let i = index;  trackBy: customTrackBy">
         <ion-label>Ingredient Name</ion-label>
-        <ion-input [(ngModel)]="drink.recipe[i].name" [name]="'Ingredient Title'+i"></ion-input>
+        <ion-input [(ngModel)]="drink.recipe[i].name"  [name]="'Ingredient Title'+i"></ion-input>
 
         <ion-label>Number of Parts</ion-label>
         <ion-input type="number" [(ngModel)]="drink.recipe[i].parts" [name]="'Ingredient Parts'+i"></ion-input>
