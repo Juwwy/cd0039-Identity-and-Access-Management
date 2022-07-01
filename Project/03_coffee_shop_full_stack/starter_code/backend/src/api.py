@@ -252,7 +252,7 @@ def not_found(error):
 def not_found(error):
     return jsonify({
         "success": False,
-        "error": AuthError(error=error, status_code=401),
+        "error": 401,
         "message": "Not Authorize"
     }), 401
 
@@ -263,3 +263,10 @@ def not_found(error):
         "error": 403,
         "message": "Forbidden request. You don't have access to perform this action"
     }), 403
+
+@app.errorhandler(401)
+def auth_error(error):
+    raise AuthError({
+        "code": 401,
+        "description": "Authentication error"
+    }, status_code=401)
